@@ -21,18 +21,18 @@ enemies = [player1, player2]
 
 while
     user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 0)
-    puts "\n\n###~~~~###~~~~###~~~~###~~~~###~~~~###~~~~###~~~"
+    puts "\n\n###~~~~###~~~~###~~~~###~~~~###~~~~###~~~~###~~~" #Tout d'abord on demande au jouer s'il veut savoir dans quel état il est
     puts " Souhaiteriez-vous connaitre votre état ? O/N"
     puts " >"
-    réponse = gets.chomp
+    réponse = gets.chomp.to_s
         if réponse == "O"
             puts user.show_state
         else
         end
     puts "\n\n###~~~~###~~~~###~~~~###~~~~###~~~~###~~~~###~~~"
-    puts " Souhaiteriez-vous connaitre l'état de vos adversaires ? O/N"
+    puts " Souhaiteriez-vous connaitre l'état de vos adversaires ? O/N" #pareil mais avec les adversaires
     puts " >"
-    réponse = gets.chomp
+    réponse = gets.chomp.to_s
         if réponse == "O"
             puts player1.show_state
             puts player2.show_state
@@ -40,23 +40,30 @@ while
         end
         
     puts "\n###~~~~###~~~~###~~~~###~~~~###~~~~###~~~~\n"
-    puts "\n  Quelle action souhaites-tu effectuer ?\n\n"
+    puts "\n  Quelle action souhaites-tu effectuer ?\n\n" #menu: on indique les choix possibles
     puts "  a - chercher une meilleure arme"
     puts "  s - chercher de quoi se soigner"
     puts "\n\nAttaquer un joueur en vue:"
-    puts "  0 - Josiane a #{player1.life_points} PVs"
-    puts "  1 - José a #{player2.life_points} PVs"
+if player1.life_points <= 0
+puts "  1 - Josianne a 0 PVs"
+else
+    puts "  1 - Josianne a #{player2.life_points} PVs"
+end
+    if player2.life_points <= 0
+        puts "  2 - José a 0 PVs"
+    else
+        puts "  2 - José a #{player2.life_points} PVs"
+    end    
     puts  ">"
     menu = gets.chomp
-    case menu
-    when menu == "a"
-        @user.search_weapon
-    when menu == "s"
-        @user.search_health_pack
-    when menu == 0
-        @user.attacks(player1)
-    when menu == 1
-        @user.attacks(player2)
+    if menu == "a"
+        user.search_weapon
+    elsif menu == "s"
+        user.search_health_pack
+    elsif menu == 1
+        user.attacks(player1)
+    else menu == 2
+        user.attacks(player2)
     end
     
   
