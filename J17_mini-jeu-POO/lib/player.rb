@@ -2,7 +2,7 @@ require "pry"
 
 class Player
     attr_accessor :name, :life_points
-    
+    #on créé les attributs à lire et modifier
     def initialize(name)
         @name = name
         @life_points = 10
@@ -11,15 +11,18 @@ class Player
     def show_state
         puts "\nvoici l'état des joueur :\n"
         @life_points > 0 ? (puts "\n#{@name} a #{@life_points} points de vie\n") : (puts "\n#{@name} a 0 points de vie\n")
+    #si les PV sont >0 alors...sinon ... (? : =>> if else) permet d'éviter les chiffres négatifs et de continuer le combat
     end
 
     def gets_damage(damage)
         @life_points -= damage
         @life_points <= 0 ? (puts "Le joueur #{@name} a été tué !") : (show_state)
+    #permet de revenir au tableau d'états si le joueur est toujours en vie
     end
 
     def compute_damage
         return rand(1..6)
+        #lancer de dé au hasard
     end
 
     def attacks(other_player)
@@ -28,13 +31,14 @@ class Player
         random = compute_damage    
         puts "#{other_player} reçoit #{random} points de dommages"
         other_player.gets_damage(random)
+        #other_player reçoit des dommages au hasard avec le lancé de dé
     end
 
 end
 
 class HumanPlayer < Player
     attr_accessor :weapon_level
-
+#on crée de nouveaux attributs pour le joueur humain
     def initialize(name)
         super(@name)
         @life_points = 100
@@ -43,12 +47,13 @@ class HumanPlayer < Player
 
     def show_state
         puts "\nvoici l'état des joueur :\n"
-        @life_points > 0 ? (puts "\n#{@name} a #{@life_points} points de vie\n") : (puts "\n#{name} a 0 points de vie\n")
-        
+        if @life_points > 0 ? (puts "\n#{@name} a #{@life_points} points de vie\n") : (puts "\n#{@name} a 0 points de vie\n")
+        #pareil que pour l'autre class
     end
 
     def compute_damage
     rand(1..6) * @weapon_level
+    #lancé de dé joint au niveau de l'arme
     end
 
     def search_weapon
