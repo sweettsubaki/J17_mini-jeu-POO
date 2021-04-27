@@ -50,13 +50,13 @@ while
     menu = gets.chomp
     case menu
     when menu == "a"
-        user.search_weapon
+        @user.search_weapon
     when menu == "s"
-        user.search_health_pack
+        @user.search_health_pack
     when menu == 0
-        user.attacks(player1)
+        @user.attacks(player1)
     when menu == 1
-        user.attacks(player2)
+        @user.attacks(player2)
     end
     
   

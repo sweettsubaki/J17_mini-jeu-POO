@@ -10,7 +10,7 @@ class Player
 
     def show_state
         puts "\nvoici l'état des joueur :\n"
-        @life_points > 0 ? (puts "\n#{@name} a #{@life_points} points de vie\n") : (puts "\n#{name} a 0 points de vie\n")
+        @life_points > 0 ? (puts "\n#{@name} a #{@life_points} points de vie\n") : (puts "\n#{@name} a 0 points de vie\n")
     end
 
     def gets_damage(damage)
@@ -24,10 +24,9 @@ class Player
 
     def attacks(other_player)
         puts "\nA l'attaque !\n"
-        puts "\n #{name} attaque #{other_player.name}\n"
         puts "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=\n"
         random = compute_damage    
-        puts "#{other_player.name} reçoit #{random} points de dommages"
+        puts "#{other_player} reçoit #{random} points de dommages"
         other_player.gets_damage(random)
     end
 
