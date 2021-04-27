@@ -1,6 +1,6 @@
 class Game
 attr_accessor :human_player, :enemies_in_sight, :players_left, :life_points
-
+#on créé les attributs à lire et modifier
 def initialize(name)
     @enemies_in_sight = []
     @human_player = HumanPlayer.new(name)
@@ -11,6 +11,7 @@ def initialize(name)
 
 def kill_player
     @enemies_in_sight.delete("Player")
+    #on supprime l'élément Player de l'array
     end
     
 def is_still_ongoing?
